@@ -11,6 +11,7 @@
 using namespace std;
 
 void chooseMenu();
+void chooseFileMenu(vector <string>& word);
 void playGame();
 void writeWordFile();
 vector <Score> getScore(ifstream file);
@@ -23,6 +24,17 @@ void menu() {
 	cout << setw(24) << "3) Exit game" << endl;
 	cout << endl;
 	chooseMenu();
+}
+
+void gameScreen(int wrongGuess) {
+	cout << "________" << endl;
+	cout << '|' << setw(7) << ((wrongGuess >= 1) ? '|' : ' ') << endl;
+	cout << '|' << setw(7) << ((wrongGuess >= 2) ? 'O' : ' ') << endl;
+	cout << '|' << setw(6) << ((wrongGuess >= 4) ? '/' : ' ') << ((wrongGuess >= 3) ? '|' : ' ') << ((wrongGuess >= 5) ? '\\' : ' ') << endl;
+	cout << '|' << setw(6) << ((wrongGuess >= 6) ? '/' : ' ') << ((wrongGuess == 7) ? " \\" : " ") << endl;
+	cout << '|' << endl;
+	cout << '|' << endl;
+	cout << "|_______" << endl;
 }
 
 void scoreMenu() {
@@ -40,6 +52,15 @@ void scoreMenu() {
 		cout << endl;
 	}
 	menu();
+}
+
+void fileMenu(vector <string> &word) {
+	cout << "How do you want to get new words?" << endl;
+	cout << "0) From a file" << endl;
+	cout << "1) Manual input" << endl;
+	cout << "2) Main Menu" << endl;
+	cout << endl;
+	chooseFileMenu(word);
 }
 
 void chooseMenu() {
@@ -68,14 +89,28 @@ void chooseMenu() {
 	}
 }
 
-void gameScreen(int wrongGuess) {
-	cout << "________" << endl;
-	cout << '|' << setw(7) << ((wrongGuess >= 1) ? '|' : ' ') << endl;
-	cout << '|' << setw(7) << ((wrongGuess >= 2) ? 'O' : ' ') << endl;
-	cout << '|' << setw(6) << ((wrongGuess >= 4) ? '/' : ' ') << ((wrongGuess >= 3) ? '|' : ' ') << ((wrongGuess >= 5) ? '\\' : ' ') << endl;
-	cout << '|' << setw(6) << ((wrongGuess >= 6) ? '/' : ' ') << ((wrongGuess == 7) ? " \\" : " ") << endl;
-	cout << '|' << endl;
-	cout << '|' << endl;
-	cout << "|_______" << endl;
+void chooseFileMenu(vector <string> &word) {
+	cout << "Choose: ";
+	string choose;
+	cin >> choose;
+	cout << endl;
+	switch (choose[0]) {
+	case '0': {
+		readWordFile(word);
+		break;
+	}
+	case '1': {
+		addWord(word);
+		break;
+	}
+	case '2': {
+		menu();
+		break;
+	}
+	default: {
+		chooseFileMenu(word);
+	}
+	}
 }
+
 #endif
