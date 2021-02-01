@@ -1,4 +1,4 @@
-200
+205
 facebook
 face
 lmao
@@ -199,3 +199,8 @@ smart
 dumb
 truck
 motorbike
+cheems
+doge
+idol
+jesus
+keanu

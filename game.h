@@ -18,7 +18,8 @@ void playGame() {
 		string answerWord = getAnswerWord();
 		string guessWord(answerWord.length(), '-');
 		int wrongGuess = 0;
-		char guessedLetter[26]; //check answered letter
+		const int alphabetLetNum = 'z' - 'a';
+		char guessedLetter[alphabetLetNum]; //check answered letter
 		gameScreen(wrongGuess);
 		cout << guessWord << endl;
 		do {
